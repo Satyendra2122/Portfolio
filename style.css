@@ -1,0 +1,119 @@
+body{
+    margin: 0;
+}
+.bg-color{
+    /* background-color: #2b2c30; */
+    background: rgba(255,255,255,0);
+    transition: background 0.5s ease;
+}
+.btn-color{
+    background-color: #539d98;
+}
+.btn-border{
+    border: none;
+}
+.btn-edge{
+    border-radius: 9999px;
+}
+.relative{
+    position: relative;
+}
+.z-10{
+    z-index: 10;
+}
+/* Text adjustment size and font */
+.text-white{
+    color: white;
+}
+.text-color{
+    color: #539d98;
+}
+a:link {
+    text-decoration: none;
+  }
+.text-design{
+    font-family: 'Lato', sans-serif;
+}
+button{
+    font-family: 'Lato', sans-serif;
+}
+/* .btn-text-size{
+    font-size: .01em;
+} */
+.text-size{
+    font-size: 1.5em;
+}
+.align-center{
+    align-items: center;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-space{
+    justify-content: space-between;
+}
+.flex{
+    display: flex;
+}
+
+/* Image design related section */
+.image-container{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+.image-container::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+/* background-image: ; */
+.img-full{
+    width: 100%;
+}
+.img-resize {
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+/* Adjustment for spacing and padding */
+.my-8{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.mx-18{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.my-12{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.mx-28{
+    padding-right: 28px;
+    padding-left: 28px;
+}
+
+/* heading division designing */
+.home-text{
+    font-size: 20px;
+    position: relative;
+    top: -600px;
+    right: -177px;
+}
+
+/* Video for Background */
+.w-full{
+    width: 100%;
+}
+.h-full{
+    height: 100%;
+}
+.cover{
+    object-fit: cover;
+    z-index: -1;
+}
