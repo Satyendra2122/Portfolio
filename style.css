@@ -120,3 +120,67 @@ button{
     object-fit: cover;
     z-index: -1;
 }
+
+/* Hero Section Styling */
+.hero-section {
+    position: relative;
+    top: -120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+}
+
+.responsive-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image scales properly */
+    position: absolute;
+    z-index: -1; /* Places the image behind the text */
+}
+
+.home-text2 {
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.home-text h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+}
+
+.home-text p {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 70vh; /* Adjust height for smaller screens */
+    }
+
+    .home-text h1 {
+        font-size: 2rem;
+    }
+
+    .home-text p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .home-text p {
+        font-size: 0.8rem;
+    }
+}
