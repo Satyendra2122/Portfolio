@@ -196,7 +196,7 @@ header.light-header a {
 }
 
 header.light-header {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .hero-section.light-hero .home-text2 h1,
@@ -216,7 +216,7 @@ header.dark-header a {
 }
 
 header.dark-header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .hero-section.dark-hero .home-text2 h1,
