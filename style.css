@@ -230,10 +230,33 @@ body, header, .hero-section {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Reset margins and padding */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
+/* About Section Styling */
+.about-section {
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-section p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Light Mode About Section */
+body.light-mode .about-section {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+/* Dark Mode About Section */
+body.dark-mode .about-section {
+    background-color: #333;
+    color: #fff;
 }
