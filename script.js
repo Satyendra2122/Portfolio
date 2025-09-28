@@ -120,3 +120,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 })();
+
+// Drawer (single-menu) behavior — menu is the only nav location
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!mobileBtn || !mobileMenu) return;
+
+    function setMenu(open) {
+        mobileMenu.classList.toggle('open', open);
+        mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (open) mobileMenu.focus();
+    }
+
+    mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mobileMenu.classList.contains('open');
+        setMenu(!isOpen);
+    });
+
+    // Close when clicking a link inside the drawer
+    mobileMenu.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.matches('a.nav-link')) {
+            // allow scroll behavior to start, then close the menu
+            setTimeout(() => setMenu(false), 200);
+        }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('open')) return;
+        if (mobileMenu.contains(e.target) || mobileBtn.contains(e.target)) return;
+        setMenu(false);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+            setMenu(false);
+            mobileBtn.focus();
+        }
+    });
+});

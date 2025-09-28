@@ -184,16 +184,15 @@ body.dark-mode header a {
 
 /* Desktop nav layout */
 .nav-links {
-    display: flex;
-    gap: 8px;
+    display: none; /* hide desktop nav completely */
 }
 
-/* Mobile menu button (hidden on desktop) */
+/* Mobile menu button visible on all sizes (acts as main menu trigger) */
 .mobile-menu-btn {
-    display: none;
+    display: inline-block;
     background: transparent;
     border: none;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     padding: 8px 10px;
     cursor: pointer;
     color: inherit;
@@ -202,7 +201,7 @@ body.dark-mode header a {
 /* Mobile menu drawer (hidden by default, slides from right) */
 .mobile-menu {
     position: fixed;
-    top: 72px; /* below header */
+    top: 72px; /* keep in sync with header margin-top */
     right: 0;
     width: 240px;
     max-width: 80%;
