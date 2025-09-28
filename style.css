@@ -27,6 +27,22 @@ body, html {
     max-height: 120px;
 }
 
+/* Header (fixed) */
+header#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    z-index: 30;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px);
+}
+
+body.dark-mode header#header {
+    background: rgba(0,0,0,0.5);
+}
+
 /* Hero Section */
 .hero-section, .about-section {
     height: 100vh;
@@ -47,8 +63,64 @@ body, html {
     background-image: url('./img/bg-img4-light.jpg');
 }
 
+/* Nav link styling & active state */
+header a.nav-link {
+    margin: 0 12px;
+    color: inherit;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+header a.nav-link.active {
+    background-color: rgba(83,157,152,0.15);
+    color: #539d98;
+    font-weight: 700;
+}
+
+/* Ensure main content below header */
+main {
+    margin-top: 72px; /* match header height */
+}
+
+/* Scroll snapping container and sections */
+.snap-container {
+    height: calc(100vh - 72px);
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.snap-container section {
+    height: calc(100vh - 72px);
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 0.98;
+}
+
+/* Slight visual distinction between sections */
+.about-section {
+    background-color: rgba(255,255,255,0.85);
+}
+body.dark-mode .about-section {
+    background-color: rgba(0,0,0,0.65);
+}
+
+/* Section content animation when active (JS adds .in-view by observer) */
+.snap-container section.in-view {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Make hero text readable */
 .home-text2 h1, .home-text2 p {
-    color: black;
+    margin: 0;
+    padding: 6px 12px;
 }
 
 /* Light Mode */
@@ -104,4 +176,14 @@ body.light-mode header a {
 /* Dark Mode Link Styling */
 body.dark-mode header a {
     color: white; /* White text for dark mode */
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+    header#header { padding: 8px 12px; }
+    .img-resize { max-width: 60px; max-height: 60px; }
+    header a.nav-link { margin: 0 8px; font-size: 0.95rem; }
+    main { margin-top: 64px; }
+    .snap-container { height: calc(100vh - 64px); }
+    .snap-container section { height: calc(100vh - 64px); }
 }

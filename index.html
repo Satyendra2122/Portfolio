@@ -11,35 +11,63 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-    <header class="bg-color flex align-center justify-space" id="header">
+<body class="light-mode">
+    <header class="bg-color flex align-center justify-space" id="header" role="banner">
         <div class="flex justify-center align-center text-design">
             <img src="./logo.svg" alt="Logo" class="img-resize">
-            <a href="#hero-section" class="text-black text-size mx-18 my-8">Home</a>
-            <a href="#about" class="text-black text-size mx-18 my-8">About</a>
-            <a href="#skills" class="text-black text-size mx-18 my-8">Skills</a>
-            <a href="#portfolio" class="text-black text-size mx-18 my-8">Portfolio</a>
-            <a href="#contact" class="text-black text-size mx-18 my-8">Contact</a>
+            <a href="#hero-section" class="text-black text-size mx-18 my-8 nav-link">Home</a>
+            <a href="#about" class="text-black text-size mx-18 my-8 nav-link">About</a>
+            <a href="#skills" class="text-black text-size mx-18 my-8 nav-link">Skills</a>
+            <a href="#portfolio" class="text-black text-size mx-18 my-8 nav-link">Portfolio</a>
+            <a href="#contact" class="text-black text-size mx-18 my-8 nav-link">Contact</a>
         </div>
         <div class="align-center justify-center flex">
             <button id="toggle-mode" class="text-size text-white btn-color btn-border btn-edge">DARKMODE</button>
         </div>
     </header>
 
-    <section class="hero-section" id="hero-section">
-        <div class="home-text2">
-            <h1>Hello World! This is Satyendra Kumar Lokesh Portfolio and he <span>Welcomes You...</span></h1>
-            <p>He is a geek, that's what he thinks. Feel Free to <a href="#contact">Contact</a></p>
-        </div>
-    </section>
+    <main class="snap-container" id="main">
+        <section class="hero-section" id="hero-section">
+            <div class="home-text2">
+                <h1>Hello World! This is Satyendra Kumar Lokesh Portfolio and he <span>Welcomes You...</span></h1>
+                <p>He is a geek, that's what he thinks. Feel Free to <a href="#contact">Contact</a></p>
+            </div>
+        </section>
 
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <h2>About Me</h2>
-            <p>Hello! I am Satyendra Kumar Lokesh, a passionate developer who loves creating amazing web experiences.</p>
-            <p>I specialize in front-end development, responsive design, and building dynamic web applications.</p>
-        </div>
-    </section>
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>Hello! I am Satyendra Kumar Lokesh, a passionate developer who loves creating amazing web experiences.
+                </p>
+                <p>I specialize in front-end development, responsive design, and building dynamic web applications.</p>
+            </div>
+        </section>
+
+        <!-- New: Skills -->
+        <section id="skills" class="about-section">
+            <div class="about-content">
+                <h2>Skills</h2>
+                <p>HTML, CSS, JavaScript, React, Node.js, Responsive Design, Git</p>
+            </div>
+        </section>
+
+        <!-- New: Portfolio -->
+        <section id="portfolio" class="about-section">
+            <div class="about-content">
+                <h2>Portfolio</h2>
+                <p>Some projects showcase: project A, project B, project C. (Replace with your items)</p>
+            </div>
+        </section>
+
+        <!-- New: Contact -->
+        <section id="contact" class="about-section">
+            <div class="about-content">
+                <h2>Contact</h2>
+                <p>Email: your.email@example.com</p>
+                <p>LinkedIn / GitHub / Twitter — links here</p>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
