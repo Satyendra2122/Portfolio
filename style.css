@@ -23,8 +23,12 @@ body, html {
 }
 
 .img-resize {
-    max-width: 120px;
-    max-height: 120px;
+    /* responsive sizing: min 40px, up to 120px, scales with viewport in between */
+    width: clamp(40px, 12vw, 120px);
+    height: auto;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 /* Header (fixed) */
@@ -181,9 +185,14 @@ body.dark-mode header a {
 /* Responsive adjustments */
 @media (max-width: 700px) {
     header#header { padding: 8px 12px; }
-    .img-resize { max-width: 60px; max-height: 60px; }
+    .img-resize { /* smaller caps for mobile */ max-width: 60px; width: clamp(36px, 14vw, 60px); max-height: 60px; }
     header a.nav-link { margin: 0 8px; font-size: 0.95rem; }
     main { margin-top: 64px; }
     .snap-container { height: calc(100vh - 64px); }
     .snap-container section { height: calc(100vh - 64px); }
+}
+
+/* Very small devices */
+@media (max-width: 420px) {
+    .img-resize { width: clamp(32px, 14vw, 48px); max-width: 48px; max-height: 48px; }
 }
