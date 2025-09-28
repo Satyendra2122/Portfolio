@@ -13,7 +13,7 @@ document.getElementById("toggle-mode").addEventListener("click", function () {
         header.classList.remove("light-header");
         heroSection.classList.add("dark-hero");
         heroSection.classList.remove("light-hero");
-        backgroundImage.src = "./img/bg-img1-dark.jpg"; // Change to dark mode background image
+        backgroundImage.src = "./img/bg-img2-dark.jpg"; // Change to dark mode background image
         button.textContent = "LIGHTMODE";
     } else {
         // Apply light mode styles
