@@ -1,38 +1,37 @@
-// initialize theme from localStorage (keep original toggle logic but persistent)
-(function () {
+// Replaced theme init/toggle with a robust DOMContentLoaded-safe implementation
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
-    const btn = document.getElementById("toggle-mode");
+    const btn = document.getElementById('toggle-mode');
+    if (!btn) return; // guard: nothing to do if button missing
 
-    // Initialize mode
+    function setTheme(mode) {
+        if (mode === 'dark') {
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
+            btn.textContent = 'LIGHTMODE';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
+            btn.textContent = 'DARKMODE';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    // Initialize from localStorage or system preference
     const saved = localStorage.getItem('theme');
-    if (saved === 'dark') {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        if (btn) btn.textContent = "LIGHTMODE";
+    if (saved === 'dark' || saved === 'light') {
+        setTheme(saved);
     } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        if (btn) btn.textContent = "DARKMODE";
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
     }
 
-    if (btn) {
-        btn.addEventListener("click", function () {
-            const body = document.body;
-            const button = this;
-
-            if (body.classList.contains("light-mode")) {
-                body.classList.remove("light-mode");
-                body.classList.add("dark-mode");
-                button.textContent = "LIGHTMODE";
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.remove("dark-mode");
-                body.classList.add("light-mode");
-                button.textContent = "DARKMODE";
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    }
+    // Single toggle handler
+    btn.addEventListener('click', () => {
+        const currentIsDark = body.classList.contains('dark-mode');
+        setTheme(currentIsDark ? 'light' : 'dark');
+    });
 })();
 
 // Smooth single-page navigation & active link highlighting
