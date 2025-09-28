@@ -89,3 +89,19 @@ button {
     color: white;
     font-size: 1rem;
 }
+
+/* Default Link Styling */
+header a {
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+/* Light Mode Link Styling */
+body.light-mode header a {
+    color: black; /* Black text for light mode */
+}
+
+/* Dark Mode Link Styling */
+body.dark-mode header a {
+    color: white; /* White text for dark mode */
+}
