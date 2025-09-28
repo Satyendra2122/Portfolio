@@ -260,3 +260,47 @@ body.dark-mode .about-section {
     background-color: #333;
     color: #fff;
 }
+/* Shared background image for Hero and About sections */
+.hero-section, .about-section {
+    background-image: url('./img/bg-img4-light.jpg'); /* Path to the shared image */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+/* Hero Section Styling */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* About Section Styling */
+.about-section {
+    padding: 50px 20px;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Light Mode Styling */
+body.light-mode .hero-section,
+body.light-mode .about-section {
+    background-image: url('./img/bg-img4-light.jpg'); /* Light mode image */
+    color: black;
+}
+
+/* Dark Mode Styling */
+body.dark-mode .hero-section,
+body.dark-mode .about-section {
+    background-image: url('./img/bg-img2-dark.jpg'); /* Dark mode image */
+    color: white;
+}
