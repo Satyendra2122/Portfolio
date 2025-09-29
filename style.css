@@ -1,4 +1,37 @@
 :root {
+  --bg-image: url('./images/bg-img4-light.jpg'); /* light by default */
+}
+
+body.dark {
+  --bg-image: url('./images/bg-img2-dark.jpg');  /* dark theme image */
+}
+/* Background applied to all SPA sections */
+.page-section {
+  position: relative;
+  background-image: var(--bg-image);
+  background-size: cover;        /* scales across sizes */
+  background-position: center;   /* keep subject centered */
+  background-repeat: no-repeat;
+  background-attachment: fixed;  /* subtle parallax on desktop */
+}
+
+/* Mobile performance: avoid fixed attachment */
+@media (max-width: 768px) {
+  .page-section {
+    background-attachment: scroll;
+  }
+}
+/* Light overlay for readability; sits behind content */
+.page-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+body.dark .page-section::before {
+  background: rgba(0, 0, 0, 0.25);
+}
+:root {
   /* Primitive Color Tokens */
   --color-white: rgba(255, 255, 255, 1);
   --color-black: rgba(0, 0, 0, 1);
