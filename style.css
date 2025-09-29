@@ -817,7 +817,7 @@ body.dark .timeline-content,
 body.dark .contact-item,
 body.dark .contact-form,
 body.dark .stat {
-    background: rgba(255, 255, 255, 0.08) !important; /* Light glass effect */
+    background: rgba(255, 255, 255, 0.9) !important; /* WHITE instead of transparent */
 }
 
 /* CRITICAL TEXT CONTRAST FIX - Form Elements - Special Treatment */
