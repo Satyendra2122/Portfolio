@@ -45,4 +45,67 @@ document.addEventListener('DOMContentLoaded', () => {
 	// initial pane
 	const initial = (location.hash || '#home').replace('#','') || 'home';
 	showPane(initial);
+
+	// mobile drawer controls
+	const mobileBtn = document.getElementById('mobile-menu-btn');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const mobileToggle = document.getElementById('mobile-toggle');
+
+	function setMenu(open) {
+		if (!mobileMenu || !mobileBtn) return;
+		mobileMenu.classList.toggle('open', open);
+		mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+		mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+	}
+
+	if (mobileBtn && mobileMenu) {
+		mobileBtn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			setMenu(!mobileMenu.classList.contains('open'));
+		});
+
+		// close when clicking outside
+		document.addEventListener('click', (e) => {
+			if (!mobileMenu.classList.contains('open')) return;
+			if (mobileMenu.contains(e.target) || mobileBtn.contains(e.target)) return;
+			setMenu(false);
+		});
+
+		// close on Escape
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+				setMenu(false);
+				mobileBtn.focus();
+			}
+		});
+
+		// close drawer when a link inside is clicked (pane handler will run separately)
+		mobileMenu.addEventListener('click', (e) => {
+			const a = e.target.closest('a.nav-link');
+			if (a) setTimeout(() => setMenu(false), 120);
+		});
+	}
+
+	// mobile theme toggle should reuse desktop toggle behavior
+	if (mobileToggle) {
+		mobileToggle.addEventListener('click', () => {
+			const desktopBtn = document.getElementById('toggle-mode');
+			if (desktopBtn) desktopBtn.click();
+			else {
+				// fallback: toggle classes directly
+				const isDark = document.body.classList.contains('dark-mode');
+				if (isDark) {
+					document.body.classList.remove('dark-mode');
+					document.body.classList.add('light-mode');
+					mobileToggle.textContent = 'DARKMODE';
+					localStorage.setItem('theme', 'light');
+				} else {
+					document.body.classList.remove('light-mode');
+					document.body.classList.add('dark-mode');
+					mobileToggle.textContent = 'LIGHTMODE';
+					localStorage.setItem('theme', 'dark');
+				}
+			}
+		});
+	}
 });
