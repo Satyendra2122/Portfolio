@@ -792,14 +792,12 @@ body.dark {
     left: 0;
     right: 0;
     z-index: 999;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
+    background: rgba(var(--color-slate-900-rgb, 19, 52, 59), 0.95);
+    backdrop-filter: blur(10px);
 }
 
 body.dark .header {
-    background: transparent !important;
+    background: rgba(38, 40, 40, 0.95);
 }
 
 .header-container {
