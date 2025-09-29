@@ -95,8 +95,15 @@ body.dark-mode{color:#eee;background-color:#000}
     font-size: 1.6rem;
     cursor: pointer;
     color: inherit;
-    margin-left: 10px;
     flex-shrink: 0;
+}
+
+/* Right-side container for toggle + hamburger */
+.right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
 }
 
 /* Mobile menu drawer (hidden by default, slides from right) */
@@ -132,6 +139,10 @@ body.dark-mode .mobile-menu { background: rgba(10,10,10,0.95); color: #fff; box-
     .main-nav { display: none; }    /* hide desktop nav on mobile */
     .mobile-menu-btn { display: inline-block; } /* show hamburger */
     .mobile-menu { top: 80px; height: calc(100vh - 80px); } /* mobile header offset */
+    /* keep header sizing consistent */
+    .site-header { height: 80px; padding: 10px 12px; }
+    .content { padding-top: 80px; min-height: calc(100vh - 80px); }
+    .theme-toggle { display: inline-block !important; flex-shrink: 0; }
 }
 
 /* ensure heavy z-index on very small devices too */
