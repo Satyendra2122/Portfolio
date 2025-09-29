@@ -6,22 +6,25 @@ html,body{height:100%;font-family:Lato,system-ui,sans-serif}
 .site-header{
 	position:fixed;
 	top:0;left:0;right:0;
-	height:64px;
+	/* increased header height to fit larger logo */
+	height:96px;
 	display:flex;
 	align-items:center;
 	justify-content:space-between;
-	padding:8px 16px;
+	padding:12px 20px;
 	background:rgba(255,255,255,0.35);
 	backdrop-filter:blur(6px);
 	z-index:50;
 }
+
+/* keep dark tint behavior */
 body.dark-mode .site-header{background:rgba(0,0,0,0.35)}
-.left{display:flex;align-items:center;gap:16px}
+
+/* increase logo height to fit new header */
 .logo {
-    /* constrain by height so it always fits inside the header */
-    height: 48px;
+    height: 72px;
     width: auto;
-    max-width: 140px;
+    max-width: 220px;
     object-fit: contain;
     flex-shrink: 0;
 }
@@ -62,8 +65,9 @@ body.dark-mode .site-header{background:rgba(0,0,0,0.35)}
 
 /* Content area with background images (keep image paths) */
 .content{
-	min-height:calc(100vh - 64px);
-	padding-top:64px;
+	/* adjust padding/top offset to match new header height */
+	min-height:calc(100vh - 96px);
+	padding-top:96px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -85,15 +89,19 @@ body.dark-mode{color:#eee;background-color:#000}
 
 /* Responsive: collapse nav on small screens and show compact header */
 @media (max-width:700px){
+	/* smaller header on mobile but larger than before so logo still visible */
+	.site-header{height:80px;padding:10px 12px}
 	.main-nav{display:flex;gap:8px;font-size:0.95rem;overflow:auto}
-	.site-header{height:56px;padding:8px 12px}
-	.content{padding-top:56px;min-height:calc(100vh - 56px)}
+	.content{padding-top:80px;min-height:calc(100vh - 80px)}
 	/* ensure toggle stays visible on mobile */
 	.theme-toggle{padding:6px 10px;font-size:0.95rem}
+	/* slightly smaller logo on mobile */
+	.logo{height:56px;max-width:160px}
 }
 
 /* Very small devices */
 @media (max-width:420px){
-	.logo{height:40px;max-width:120px}
+	/* tiny devices: scale logo down but keep visible */
+	.logo{height:48px;max-width:120px}
 	.main-nav{gap:6px;font-size:0.9rem}
 }
