@@ -1,14 +1,28 @@
-// CRITICAL SPA FIXES - Portfolio application with proper data and working navigation
+// Portfolio data from provided JSON
 const portfolioData = {
   "personal_info": {
     "name": "Taylor Brooks",
-    "title": "Full Stack Developer",
+    "title": "Full Stack Developer", 
     "tagline": "Transforming ideas into powerful digital solutions",
     "location": "San Diego, CA",
     "email": "taylor@example.com",
     "phone": "+1 (555) 321-9876",
     "bio": "I'm a passionate full-stack developer with 4+ years of experience building modern web applications. I specialize in React, Node.js, and cloud technologies, with a focus on creating intuitive user experiences and scalable architectures."
   },
+  "skills": [
+    {"name": "JavaScript", "level": 93, "category": "Frontend"},
+    {"name": "React", "level": 90, "category": "Frontend"},
+    {"name": "Vue.js", "level": 85, "category": "Frontend"},
+    {"name": "TypeScript", "level": 88, "category": "Frontend"},
+    {"name": "HTML/CSS", "level": 95, "category": "Frontend"},
+    {"name": "Node.js", "level": 85, "category": "Backend"},
+    {"name": "Python", "level": 82, "category": "Backend"},
+    {"name": "MongoDB", "level": 84, "category": "Database"},
+    {"name": "PostgreSQL", "level": 80, "category": "Database"},
+    {"name": "AWS", "level": 75, "category": "Cloud"},
+    {"name": "Docker", "level": 78, "category": "DevOps"},
+    {"name": "Git", "level": 92, "category": "Tools"}
+  ],
   "portfolio": [
     {
       "id": 1,
@@ -21,7 +35,7 @@ const portfolioData = {
     },
     {
       "id": 2,
-      "title": "Cryptocurrency Dashboard",
+      "title": "Cryptocurrency Dashboard", 
       "description": "Real-time cryptocurrency tracking and portfolio management application with advanced charting, price alerts, news integration, and trading simulation features.",
       "image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=600&h=400&fit=crop",
       "technologies": ["Vue.js", "Python", "PostgreSQL", "Chart.js", "WebSocket"],
@@ -32,13 +46,76 @@ const portfolioData = {
       "id": 3,
       "title": "Video Conferencing Platform",
       "description": "Secure video conferencing application with screen sharing, recording, chat, breakout rooms, and calendar integration. Supports up to 100 participants per call.",
-      "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
+      "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop", 
       "technologies": ["Next.js", "WebRTC", "Socket.io", "MongoDB", "AWS"],
       "github": "#",
       "live": "#"
     }
+  ],
+  "experience": [
+    {
+      "company": "NextGen Software",
+      "position": "Senior Full Stack Developer",
+      "duration": "2023 - Present",
+      "description": "Lead development of cutting-edge web applications and guide technical architecture decisions. Collaborate with cross-functional teams to deliver high-quality software solutions.",
+      "achievements": [
+        "Architected scalable applications serving 150K+ active users",
+        "Reduced server costs by 40% through performance optimization", 
+        "Led development team of 5 engineers on flagship product",
+        "Implemented automated testing reducing bugs by 75%"
+      ]
+    },
+    {
+      "company": "CodeCraft Solutions",
+      "position": "Full Stack Developer",
+      "duration": "2021 - 2023", 
+      "description": "Developed responsive web applications using modern JavaScript frameworks. Worked closely with designers and product managers to translate requirements into technical solutions.",
+      "achievements": [
+        "Built 18+ web applications with 99.9% uptime",
+        "Improved user engagement by 55% through UX optimization",
+        "Integrated 25+ third-party APIs and payment systems",
+        "Mentored 2 junior developers in modern development practices"
+      ]
+    },
+    {
+      "company": "Digital Innovations Inc",
+      "position": "Frontend Developer", 
+      "duration": "2020 - 2021",
+      "description": "Focused on creating intuitive user interfaces and implementing responsive design principles. Collaborated with backend developers to integrate APIs and ensure seamless user experiences.",
+      "achievements": [
+        "Created 10+ responsive web interfaces with modern design",
+        "Improved page load speeds by 65% through optimization",
+        "Established component library used across 12+ projects", 
+        "Achieved 100% accessibility compliance on all projects"
+      ]
+    }
+  ],
+  "social_links": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com",
+      "icon": "fab fa-github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com", 
+      "icon": "fab fa-linkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com",
+      "icon": "fab fa-twitter"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:taylor@example.com",
+      "icon": "fas fa-envelope"
+    }
   ]
 };
+
+// Current active page
+let currentPage = 'home';
 
 // DOM elements
 const elements = {
@@ -53,238 +130,311 @@ const elements = {
   header: document.getElementById('header')
 };
 
-console.log('🚀 Portfolio App Starting - DOM Elements:', elements);
-
-// CRITICAL: Fixed SPA Page Management Function
-function showPage(pageId) {
-  console.log(`📋 Switching to section: ${pageId}`);
-  
-  // Hide all page sections
-  document.querySelectorAll('.page-section').forEach(section => {
-    section.classList.remove('active');
-    section.style.display = 'none';
-    console.log(`❌ Hidden section: ${section.id}`);
-  });
-  
-  // Show target section
-  const targetSection = document.getElementById(pageId);
-  if (targetSection) {
-    targetSection.classList.add('active');
-    
-    // CRITICAL: Special handling for home page with flex centering
-    if (pageId === 'home') {
-      targetSection.style.display = 'flex';
-      targetSection.style.alignItems = 'center';
-      targetSection.style.justifyContent = 'center';
-      targetSection.style.textAlign = 'center';
-      targetSection.style.minHeight = '100vh';
-      console.log(`✅ Home page shown with flex centering`);
-    } else {
-      targetSection.style.display = 'block';
-      targetSection.style.alignItems = 'unset';
-      targetSection.style.justifyContent = 'unset';
-      targetSection.style.textAlign = 'unset';
-      console.log(`✅ Regular section shown: ${pageId}`);
-    }
-  } else {
-    console.error(`❌ Section not found: ${pageId}`);
-  }
-  
-  // Update navigation active states
-  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-    link.classList.remove('active');
-  });
-  
-  // Add active class to current navigation links
-  const activeLinks = document.querySelectorAll(`[href="#${pageId}"]`);
-  activeLinks.forEach(link => {
-    link.classList.add('active');
-    console.log(`🎯 Activated nav link for: ${pageId}`);
-  });
-}
-
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('🎉 DOM Content Loaded - Initializing Portfolio App');
+  console.log('🚀 TRUE SPA Portfolio initializing...');
   initializeApp();
 });
 
 function initializeApp() {
-  console.log('⚙️ Initializing application components...');
+  console.log('📱 Initializing TRUE SPA features...');
   
-  initSectionNavigation();
+  // CRITICAL: Force initial SPA state immediately
+  enforceInitialSPAState();
+  
+  // Initialize core features
   initTheme();
-  initMobileNavigation();
+  initSPANavigation();
+  initMobileMenu();
   initPortfolioModal();
   initContactForm();
   initScrollEffects();
+  initLoadingAnimation();
   
-  // CRITICAL: Show home section by default with proper flex centering
-  console.log('🏠 Setting home as default section');
-  showPage('home');
-  
-  console.log('✅ Application initialization complete');
+  console.log('✅ TRUE SPA initialized successfully!');
+  console.log(`👋 Welcome to ${portfolioData.personal_info.name}'s Portfolio`);
 }
 
-// CRITICAL: Fixed Section Navigation with SPA Management
-function initSectionNavigation() {
-  console.log('🔗 Initializing section navigation...');
+// CRITICAL FIX: Force initial SPA state
+function enforceInitialSPAState() {
+  console.log('🔧 ENFORCING TRUE SPA STATE - Hiding all sections except home...');
   
-  // Desktop navigation links
-  const desktopLinks = document.querySelectorAll('.nav-link');
-  console.log(`Found ${desktopLinks.length} desktop navigation links`);
+  // Get all page sections
+  const allSections = document.querySelectorAll('.page-section');
   
-  desktopLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const sectionId = this.getAttribute('href').substring(1);
-      console.log(`🖱️ Desktop nav clicked: ${sectionId}`);
-      showPage(sectionId);
-    });
+  // Force hide ALL sections first
+  allSections.forEach(section => {
+    section.style.display = 'none';
+    section.classList.remove('active');
   });
   
-  // Mobile navigation links
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-  console.log(`Found ${mobileLinks.length} mobile navigation links`);
+  // Force show ONLY home section
+  const homeSection = document.getElementById('home');
+  if (homeSection) {
+    homeSection.style.display = 'flex';
+    homeSection.classList.add('active');
+    currentPage = 'home';
+    
+    // Ensure home is properly centered
+    homeSection.style.alignItems = 'center';
+    homeSection.style.justifyContent = 'center';
+    homeSection.style.textAlign = 'center';
+    homeSection.style.minHeight = '100vh';
+    
+    console.log('✅ HOME section is now the ONLY visible section');
+  }
   
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const sectionId = this.getAttribute('href').substring(1);
-      console.log(`📱 Mobile nav clicked: ${sectionId}`);
-      showPage(sectionId);
-      closeMobileMenu();
-    });
+  // Update navigation
+  updateActiveNavLinks('home');
+  
+  // Disable any scroll behavior that might show other sections
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    document.body.style.overflow = 'auto';
+  }, 100);
+}
+
+// CRITICAL FIX: TRUE SPA NAVIGATION
+function initSPANavigation() {
+  console.log('🧭 Initializing FIXED SPA navigation...');
+  
+  // Get all navigation links (desktop + mobile)
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  const heroButtons = document.querySelectorAll('.hero-buttons a');
+  
+  // Add click handlers to navigation links
+  navLinks.forEach(link => {
+    link.addEventListener('click', handleSPANavigation);
   });
   
-  // Hero buttons navigation - Fixed to prevent conflicts
-  const heroButtons = document.querySelectorAll('.hero-buttons a[href^="#"]');
+  // Add click handlers to hero buttons
   heroButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const sectionId = this.getAttribute('href').substring(1);
-      console.log(`🎯 Hero button clicked: ${sectionId}`);
-      showPage(sectionId);
-    });
+    button.addEventListener('click', handleSPANavigation);
   });
   
-  console.log('✅ Section navigation initialized');
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', (e) => {
+    const hash = window.location.hash || '#home';
+    const pageId = hash.substring(1);
+    showPage(pageId, false); // Don't update history
+  });
+  
+  // Prevent any scroll-based navigation
+  window.addEventListener('scroll', (e) => {
+    // Don't allow scroll to reveal other sections
+    if (currentPage === 'home') {
+      window.scrollTo(0, 0);
+    }
+  });
+  
+  console.log('✅ FIXED SPA navigation initialized');
 }
 
-// CRITICAL: Theme Management with Enhanced Visibility
+// CRITICAL FIX: Proper SPA navigation handler
+function handleSPANavigation(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const targetId = e.target.getAttribute('href');
+  if (!targetId || !targetId.startsWith('#')) return;
+  
+  const pageId = targetId.substring(1);
+  console.log(`🧭 SPA Navigation to: ${pageId}`);
+  
+  showPage(pageId);
+  
+  // Close mobile menu if open
+  if (elements.mobileNav.classList.contains('active')) {
+    closeMobileMenu();
+  }
+}
+
+// CRITICAL FIX: Show only ONE page at a time (ENFORCED SPA)
+function showPage(pageId, updateHistory = true) {
+  console.log(`📄 ENFORCING SPA: Showing ONLY page: ${pageId}`);
+  
+  // Step 1: FORCE hide ALL sections with !important overrides
+  const allSections = document.querySelectorAll('.page-section');
+  allSections.forEach(section => {
+    section.style.setProperty('display', 'none', 'important');
+    section.classList.remove('active');
+  });
+  
+  // Step 2: FORCE show ONLY the target section
+  const targetSection = document.getElementById(pageId);
+  if (targetSection) {
+    targetSection.classList.add('active');
+    
+    // Special handling for home page (needs flex for centering)
+    if (pageId === 'home') {
+      targetSection.style.setProperty('display', 'flex', 'important');
+      targetSection.style.setProperty('align-items', 'center', 'important');
+      targetSection.style.setProperty('justify-content', 'center', 'important');
+      targetSection.style.setProperty('text-align', 'center', 'important');
+      targetSection.style.setProperty('min-height', '100vh', 'important');
+      targetSection.style.setProperty('padding-top', '0', 'important');
+      console.log('🏠 Home page FORCED to display with flex centering');
+      
+      // Force scroll to top for home
+      window.scrollTo(0, 0);
+    } else {
+      targetSection.style.setProperty('display', 'block', 'important');
+      targetSection.style.setProperty('padding-top', '70px', 'important');
+      console.log(`📋 ${pageId} page FORCED to display as block`);
+      
+      // Scroll to top of section
+      window.scrollTo(0, 0);
+    }
+    
+    // Update current page tracker
+    currentPage = pageId;
+    
+    // Update navigation active states
+    updateActiveNavLinks(pageId);
+    
+    // Update browser URL
+    if (updateHistory) {
+      history.pushState({ page: pageId }, '', `#${pageId}`);
+    }
+    
+    // Trigger animations for new page
+    triggerPageAnimations(targetSection);
+    
+    console.log(`✅ SPA: Successfully showing ONLY ${pageId}`);
+    console.log(`🔧 Debug: Current visible sections:`, 
+      Array.from(document.querySelectorAll('.page-section')).map(s => ({
+        id: s.id, 
+        display: s.style.display, 
+        active: s.classList.contains('active')
+      }))
+    );
+  } else {
+    console.error(`❌ Page not found: ${pageId}`);
+  }
+}
+
+function updateActiveNavLinks(pageId) {
+  // Remove active from all nav links
+  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+    link.classList.remove('active');
+  });
+  
+  // Add active to current page links
+  document.querySelectorAll(`[href="#${pageId}"]`).forEach(link => {
+    link.classList.add('active');
+  });
+}
+
+function triggerPageAnimations(section) {
+  // Reset and trigger animations
+  const animatedElements = section.querySelectorAll('.portfolio-item, .timeline-item, .skill-category');
+  animatedElements.forEach((element, index) => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    }, index * 100);
+  });
+}
+
+// Theme Management
 function initTheme() {
-  console.log('🎨 Initializing theme management...');
+  console.log('🎨 Initializing theme system...');
   
   // Check for saved theme or use system preference
   const savedTheme = localStorage.getItem('portfolio-theme');
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+  const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
   
-  console.log(`Current theme: ${theme} (saved: ${savedTheme}, system: ${systemPrefersDark ? 'dark' : 'light'})`);
+  console.log(`🎨 Initial theme: ${initialTheme}`);
+  setTheme(initialTheme);
   
-  setTheme(theme);
-  
-  // CRITICAL: Theme toggle event listener with high z-index enforcement
-  if (elements.themeToggle) {
-    elements.themeToggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleTheme();
-    });
-    // Ensure theme toggle is always visible
-    elements.themeToggle.style.zIndex = '10000';
-    elements.themeToggle.style.position = 'relative';
-    console.log('✅ Theme toggle event listener added with high z-index');
-  }
+  // Theme toggle event listener
+  elements.themeToggle.addEventListener('click', function() {
+    console.log('🎨 Theme toggle clicked!');
+    toggleTheme();
+  });
   
   // Listen for system theme changes
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     if (!localStorage.getItem('portfolio-theme')) {
+      console.log(`🎨 System theme changed to: ${e.matches ? 'dark' : 'light'}`);
       setTheme(e.matches ? 'dark' : 'light');
     }
   });
+  
+  console.log('✅ Theme system initialized');
 }
 
 function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-color-scheme') || 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  console.log(`🔄 Theme toggle: ${currentTheme} → ${newTheme}`);
+  
+  console.log(`🎨 Toggling theme from ${currentTheme} to ${newTheme}`);
+  
   setTheme(newTheme);
   localStorage.setItem('portfolio-theme', newTheme);
+  
+  console.log(`✅ Theme toggled successfully to ${newTheme}`);
 }
 
 function setTheme(theme) {
+  console.log(`🎨 Setting theme to: ${theme}`);
+  
+  // Set the data attribute for theme
   document.documentElement.setAttribute('data-color-scheme', theme);
-  const icon = elements.themeToggle?.querySelector('i');
-  if (icon) {
-    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  
+  // Update the theme toggle icon
+  const icon = elements.themeToggle.querySelector('i');
+  if (theme === 'dark') {
+    icon.classList.remove('fa-moon');
+    icon.classList.add('fa-sun');
+    console.log('🌞 Icon changed to sun (dark mode active)');
+  } else {
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+    console.log('🌙 Icon changed to moon (light mode active)');
   }
   
-  // Add smooth transition with enhanced visibility
-  if (elements.themeToggle) {
-    elements.themeToggle.style.transform = 'scale(0.8)';
-    elements.themeToggle.style.zIndex = '10000'; // Maintain high z-index
-    setTimeout(() => {
-      elements.themeToggle.style.transform = 'scale(1)';
-    }, 150);
-  }
+  // Add smooth transition effect
+  elements.themeToggle.style.transform = 'scale(0.8)';
+  setTimeout(() => {
+    elements.themeToggle.style.transform = 'scale(1)';
+  }, 150);
   
-  console.log(`🎨 Theme set to: ${theme}`);
+  console.log(`✅ Theme ${theme} applied successfully`);
 }
 
-// Mobile Navigation Management
-function initMobileNavigation() {
-  console.log('📱 Initializing mobile navigation...');
+// Mobile Menu Management
+function initMobileMenu() {
+  console.log('📱 Initializing mobile menu...');
   
-  // Mobile menu toggle
-  if (elements.mobileMenuBtn) {
-    elements.mobileMenuBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleMobileMenu();
-    });
-    console.log('✅ Mobile menu button event listener added');
-  }
-  
-  if (elements.mobileNavClose) {
-    elements.mobileNavClose.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeMobileMenu();
-    });
-    console.log('✅ Mobile menu close event listener added');
-  }
-  
-  if (elements.mobileNavOverlay) {
-    elements.mobileNavOverlay.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeMobileMenu();
-    });
-    console.log('✅ Mobile menu overlay event listener added');
-  }
+  elements.mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+  elements.mobileNavClose.addEventListener('click', closeMobileMenu);
+  elements.mobileNavOverlay.addEventListener('click', closeMobileMenu);
   
   // Close mobile menu on escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && elements.mobileNav?.classList.contains('active')) {
+    if (e.key === 'Escape' && elements.mobileNav.classList.contains('active')) {
       closeMobileMenu();
     }
   });
   
   // Close mobile menu on window resize
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768 && elements.mobileNav?.classList.contains('active')) {
+    if (window.innerWidth > 768 && elements.mobileNav.classList.contains('active')) {
       closeMobileMenu();
     }
   });
+  
+  console.log('✅ Mobile menu initialized');
 }
 
 function toggleMobileMenu() {
-  const isActive = elements.mobileNav?.classList.contains('active');
-  console.log(`📱 Mobile menu toggle - currently: ${isActive ? 'open' : 'closed'}`);
+  const isActive = elements.mobileNav.classList.contains('active');
   
   if (isActive) {
     closeMobileMenu();
@@ -294,99 +444,96 @@ function toggleMobileMenu() {
 }
 
 function openMobileMenu() {
-  console.log('📱 Opening mobile menu');
-  elements.mobileMenuBtn?.classList.add('active');
-  elements.mobileNav?.classList.add('active');
-  elements.mobileNavOverlay?.classList.add('active');
+  elements.mobileMenuBtn.classList.add('active');
+  elements.mobileNav.classList.add('active');
+  elements.mobileNavOverlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeMobileMenu() {
-  console.log('📱 Closing mobile menu');
-  elements.mobileMenuBtn?.classList.remove('active');
-  elements.mobileNav?.classList.remove('active');
-  elements.mobileNavOverlay?.classList.remove('active');
+  elements.mobileMenuBtn.classList.remove('active');
+  elements.mobileNav.classList.remove('active');
+  elements.mobileNavOverlay.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-// Portfolio Modal Management
+// FIXED: Portfolio Modal Management
 function initPortfolioModal() {
-  console.log('🖼️ Initializing portfolio modal...');
+  console.log('🖼️ Initializing FIXED portfolio modals...');
   
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  const modalOverlay = elements.projectModal?.querySelector('.modal-overlay');
-  
-  console.log(`Found ${portfolioItems.length} portfolio items`);
-  
-  // Add click handlers to portfolio items
-  portfolioItems.forEach(item => {
-    const projectId = parseInt(item.getAttribute('data-project'));
+  // Wait for DOM to be ready, then attach modal handlers
+  setTimeout(() => {
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    console.log(`🖼️ Found ${portfolioItems.length} portfolio items`);
     
-    // Handle clicks on the entire portfolio item
-    item.addEventListener('click', (e) => {
-      // Don't open modal if clicking on external links
-      if (e.target.closest('a[target="_blank"]')) {
-        console.log('🔗 External link clicked, not opening modal');
-        return;
-      }
-      e.preventDefault();
-      e.stopPropagation();
-      console.log(`🖼️ Portfolio item clicked: ${projectId}`);
-      openProjectModal(projectId);
-    });
-    
-    // Also handle clicks specifically on view project button
-    const viewBtn = item.querySelector('.view-project');
-    if (viewBtn) {
-      viewBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
+    // Add click handlers to portfolio items
+    portfolioItems.forEach(item => {
+      const projectId = parseInt(item.getAttribute('data-project'));
+      console.log(`🖼️ Attaching modal handler to project ${projectId}`);
+      
+      // Remove any existing handlers first
+      const newItem = item.cloneNode(true);
+      item.parentNode.replaceChild(newItem, item);
+      
+      // Handle clicks on the entire portfolio item
+      newItem.addEventListener('click', (e) => {
+        // Don't open modal if clicking on external links
+        if (e.target.closest('a[target="_blank"]')) {
+          console.log('🖼️ External link clicked, not opening modal');
+          return;
+        }
         e.preventDefault();
-        console.log(`👁️ View project button clicked: ${projectId}`);
+        e.stopPropagation();
+        console.log(`🖼️ Portfolio item clicked - Opening modal for project ${projectId}`);
         openProjectModal(projectId);
       });
+      
+      // Handle view project button specifically
+      const viewBtn = newItem.querySelector('.view-project');
+      if (viewBtn) {
+        viewBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log(`🖼️ View project button clicked for ${projectId}`);
+          openProjectModal(projectId);
+        });
+      }
+    });
+    
+    // Modal close handlers
+    if (elements.modalClose) {
+      elements.modalClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeProjectModal();
+      });
     }
     
-    // Prevent modal from opening when clicking external links
-    const externalLinks = item.querySelectorAll('a[target="_blank"]');
-    externalLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.stopPropagation();
+    const modalOverlay = elements.projectModal?.querySelector('.modal-overlay');
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeProjectModal();
       });
-    });
-  });
-  
-  // Modal close handlers
-  if (elements.modalClose) {
-    elements.modalClose.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeProjectModal();
-    });
-    console.log('✅ Modal close button event listener added');
-  }
-  
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeProjectModal();
-    });
-    console.log('✅ Modal overlay event listener added');
-  }
-  
-  // Close modal with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && elements.projectModal?.classList.contains('show')) {
-      closeProjectModal();
     }
-  });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && elements.projectModal?.classList.contains('show')) {
+        closeProjectModal();
+      }
+    });
+    
+    console.log('✅ FIXED Portfolio modals initialized');
+  }, 500); // Small delay to ensure DOM is ready
 }
 
 function openProjectModal(projectId) {
+  console.log(`🖼️ OPENING modal for project ID: ${projectId}`);
+  
   const project = portfolioData.portfolio.find(p => p.id === projectId);
   
   if (project) {
-    console.log(`🖼️ Opening modal for project: ${project.title}`);
+    console.log(`🖼️ Found project: ${project.title}`);
     
     // Populate modal content
     const modalImage = document.getElementById('modal-image');
@@ -394,6 +541,7 @@ function openProjectModal(projectId) {
     const modalDescription = document.getElementById('modal-description');
     const modalDemo = document.getElementById('modal-demo');
     const modalGithub = document.getElementById('modal-github');
+    const techContainer = document.getElementById('modal-tech');
     
     if (modalImage) modalImage.src = project.image;
     if (modalImage) modalImage.alt = project.title;
@@ -403,7 +551,6 @@ function openProjectModal(projectId) {
     if (modalGithub) modalGithub.href = project.github;
     
     // Update technologies
-    const techContainer = document.getElementById('modal-tech');
     if (techContainer) {
       techContainer.innerHTML = '';
       project.technologies.forEach(tech => {
@@ -414,10 +561,9 @@ function openProjectModal(projectId) {
       });
     }
     
-    // Show modal with high z-index
+    // Show modal with animation
     if (elements.projectModal) {
       elements.projectModal.classList.remove('hidden');
-      elements.projectModal.style.zIndex = '10001'; // Above header
       // Force reflow
       elements.projectModal.offsetHeight;
       setTimeout(() => {
@@ -425,30 +571,33 @@ function openProjectModal(projectId) {
       }, 10);
       
       document.body.style.overflow = 'hidden';
+      console.log(`✅ Modal successfully opened for ${project.title}`);
+    } else {
+      console.error('❌ Modal element not found');
     }
   } else {
-    console.error(`❌ Project not found with ID: ${projectId}`);
+    console.error(`❌ Project with ID ${projectId} not found in data`);
   }
 }
 
 function closeProjectModal() {
-  console.log('🖼️ Closing project modal');
+  console.log('🖼️ Closing project modal...');
   if (elements.projectModal) {
     elements.projectModal.classList.remove('show');
     setTimeout(() => {
       elements.projectModal.classList.add('hidden');
       document.body.style.overflow = '';
+      console.log('✅ Modal closed successfully');
     }, 300);
   }
 }
 
-// Contact Form Management
+// Contact Form Management with Demo Notice
 function initContactForm() {
   console.log('📧 Initializing contact form...');
   
   if (elements.contactForm) {
     elements.contactForm.addEventListener('submit', handleFormSubmit);
-    console.log('✅ Contact form submit event listener added');
     
     // Real-time validation
     const formInputs = elements.contactForm.querySelectorAll('.form-control');
@@ -456,13 +605,14 @@ function initContactForm() {
       input.addEventListener('blur', validateField);
       input.addEventListener('input', clearFieldError);
     });
-    console.log(`✅ Added validation to ${formInputs.length} form inputs`);
   }
+  
+  console.log('✅ Contact form initialized with demo notice');
 }
 
 function handleFormSubmit(e) {
   e.preventDefault();
-  console.log('📧 Contact form submitted');
+  console.log('📧 Demo form submission attempted...');
   
   const formData = new FormData(elements.contactForm);
   const fields = {
@@ -472,7 +622,7 @@ function handleFormSubmit(e) {
     message: formData.get('message')?.trim()
   };
   
-  console.log('📧 Form data:', fields);
+  console.log('📧 Demo form data:', fields);
   
   // Validate all fields
   let isValid = true;
@@ -484,8 +634,8 @@ function handleFormSubmit(e) {
   });
   
   if (isValid) {
-    console.log('✅ Form validation passed - showing success message');
-    showSubmissionSuccess();
+    console.log('✅ Demo form validation passed');
+    showDemoSubmissionSuccess();
     elements.contactForm.reset();
     
     // Clear any remaining errors
@@ -493,7 +643,7 @@ function handleFormSubmit(e) {
       clearFieldError({ target: elements.contactForm.querySelector(`[name="${fieldName}"]`) });
     });
   } else {
-    console.log('❌ Form validation failed');
+    console.log('❌ Demo form validation failed');
   }
 }
 
@@ -555,8 +705,8 @@ function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-function showSubmissionSuccess() {
-  console.log('🎉 Showing form submission success notification');
+function showDemoSubmissionSuccess() {
+  console.log('🎉 Showing demo success notification...');
   
   // Create success notification
   const notification = document.createElement('div');
@@ -564,35 +714,42 @@ function showSubmissionSuccess() {
   notification.innerHTML = `
     <div class="success-content">
       <i class="fas fa-check-circle"></i>
-      <span>Thank you! Your message has been sent successfully.</span>
+      <div>
+        <strong>Demo Form Submitted!</strong>
+        <p>This was a demonstration. In a live website, your message would be sent via email service integration (SendGrid, Mailgun, etc.) with proper backend processing.</p>
+      </div>
     </div>
   `;
   
-  // Style the notification with high z-index
+  // Style the notification
   notification.style.cssText = `
     position: fixed;
     top: 100px;
     right: 20px;
     background: var(--color-success);
-    color: white;
+    color: var(--color-btn-primary-text);
     padding: 16px 24px;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    z-index: 10005;
+    z-index: 3000;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     max-width: 400px;
   `;
   
-  const successContent = notification.querySelector('.success-content');
-  if (successContent) {
-    successContent.style.cssText = `
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 500;
-    `;
-  }
+  notification.querySelector('.success-content').style.cssText = `
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-weight: 500;
+  `;
+  
+  notification.querySelector('.success-content p').style.cssText = `
+    margin: 4px 0 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+    font-weight: normal;
+  `;
   
   document.body.appendChild(notification);
   
@@ -609,106 +766,51 @@ function showSubmissionSuccess() {
         document.body.removeChild(notification);
       }
     }, 300);
-  }, 4000);
+  }, 6000);
 }
 
 // Scroll Effects
 function initScrollEffects() {
   console.log('📜 Initializing scroll effects...');
   
-  // Header background on scroll with enhanced z-index
+  // Header background on scroll (when applicable)
   window.addEventListener('scroll', debounce(() => {
     const scrolled = window.scrollY > 50;
-    if (elements.header) {
-      elements.header.classList.toggle('scrolled', scrolled);
-      // Maintain high z-index
-      elements.header.style.zIndex = '9999';
-    }
+    elements.header.classList.toggle('scrolled', scrolled);
   }, 10));
-  
-  // Animate elements on scroll using Intersection Observer
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-      }
-    });
-  }, observerOptions);
-  
-  // Observe portfolio items for animation
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  portfolioItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(30px)';
-    item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    scrollObserver.observe(item);
-  });
-  
-  // Timeline items animation
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  timelineItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-30px)';
-    item.style.transition = `opacity 0.6s ease ${index * 0.2}s, transform 0.6s ease ${index * 0.2}s`;
-    scrollObserver.observe(item);
-  });
   
   console.log('✅ Scroll effects initialized');
 }
 
-// Add CSS for animated elements
-const animateInCSS = `
-  .animate-in {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-  }
+// Loading Animation
+function initLoadingAnimation() {
+  console.log('🔄 Initializing loading animations...');
   
-  .timeline-item.animate-in {
-    transform: translateX(0) !important;
-  }
+  // Page load animation
+  window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+      document.body.style.opacity = '1';
+    }, 100);
+  });
   
-  .header.scrolled {
-    background: rgba(var(--color-surface), 0.98) !important;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-    z-index: 9999 !important;
-  }
+  // Hero text animation on load (only when home is visible)
+  const heroElements = document.querySelectorAll('.hero-greeting, .hero-name, .hero-title, .hero-description, .hero-buttons, .scroll-indicator');
+  heroElements.forEach((element, index) => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(30px)';
+    element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    
+    setTimeout(() => {
+      element.style.opacity = '1';
+      element.style.transform = 'translateY(0)';
+    }, 200 + (index * 200));
+  });
   
-  /* CRITICAL: Ensure theme toggle always visible */
-  .theme-toggle {
-    z-index: 10000 !important;
-    position: relative !important;
-  }
-  
-  .header {
-    z-index: 9999 !important;
-  }
-  
-  /* Fix button interaction issues */
-  .btn {
-    user-select: none;
-    -webkit-user-select: none;
-    outline: none;
-  }
-  
-  .btn:focus {
-    outline: none;
-  }
-  
-  .btn:active {
-    transform: translateY(1px);
-  }
-`;
-
-// Inject animation CSS
-const styleSheet = document.createElement('style');
-styleSheet.textContent = animateInCSS;
-document.head.appendChild(styleSheet);
+  console.log('✅ Loading animations initialized');
+}
 
 // Utility Functions
 function debounce(func, wait) {
@@ -723,64 +825,120 @@ function debounce(func, wait) {
   };
 }
 
-// CRITICAL: Ensure header and theme toggle z-index on page load
-window.addEventListener('load', function() {
-  if (elements.header) {
-    elements.header.style.zIndex = '9999';
-  }
-  if (elements.themeToggle) {
-    elements.themeToggle.style.zIndex = '10000';
-    elements.themeToggle.style.position = 'relative';
+// Enhanced Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+  // Portfolio modal keyboard support
+  if (e.key === 'Enter' || e.key === ' ') {
+    const focusedElement = document.activeElement;
+    if (focusedElement.classList.contains('view-project') || focusedElement.classList.contains('portfolio-item')) {
+      e.preventDefault();
+      const projectId = parseInt(focusedElement.getAttribute('data-project') || focusedElement.closest('.portfolio-item').getAttribute('data-project'));
+      openProjectModal(projectId);
+    }
   }
   
-  // Ensure home page is shown by default
-  showPage('home');
+  // SPA Navigation with keyboard shortcuts
+  if (e.key >= '1' && e.key <= '6' && e.altKey) {
+    e.preventDefault();
+    const pages = ['home', 'about', 'skills', 'portfolio', 'experience', 'contact'];
+    const pageIndex = parseInt(e.key) - 1;
+    if (pages[pageIndex]) {
+      showPage(pages[pageIndex]);
+    }
+  }
 });
 
-// Debug: Log all sections found
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('.page-section');
-  console.log(`📋 Found ${sections.length} page sections:`);
-  sections.forEach(section => {
-    console.log(`  - ${section.id} (classes: ${section.className})`);
+// Make portfolio items focusable for accessibility
+setTimeout(() => {
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    const titleElement = item.querySelector('.portfolio-title');
+    if (titleElement) {
+      item.setAttribute('aria-label', `View details for ${titleElement.textContent}`);
+    }
   });
-  
-  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-  console.log(`🔗 Found ${navLinks.length} navigation links:`);
-  navLinks.forEach(link => {
-    console.log(`  - ${link.getAttribute('href')} (text: ${link.textContent})`);
-  });
-});
+}, 1000);
 
-// Console welcome message
+// Console welcome message with debug info
 console.log(`
-🚀 Portfolio Website Loaded Successfully!
-👨‍💻 Built with Section-Based SPA Architecture
+🚀 FIXED TRUE SPA Portfolio Website Loaded!
+👨‍💻 Built with ENFORCED Single Page Application architecture  
 🎨 Design System: Custom CSS Variables with Dark/Light Theme
-📱 Features: Section Navigation, Mobile Menu, Theme Toggle
-🖼️ Portfolio: Interactive Modal System
-📧 Contact: Form Validation & Success Notifications
-
-CRITICAL FIXES APPLIED:
-✅ Theme Toggle: High z-index (10000) for full-screen visibility
-✅ Home Page: Flex centering in SPA mode
-✅ Header: Fixed z-index (9999) above all content
-✅ SPA Navigation: Fixed section display management with proper event handling
-✅ Button Interactions: Fixed visual glitches and event propagation
+📱 Features: TRUE SPA (only one section visible), Responsive, Accessible
 
 ${portfolioData.personal_info.name} - ${portfolioData.personal_info.title}
 📧 ${portfolioData.personal_info.email}
 📍 ${portfolioData.personal_info.location}
 
-🔧 Debug Mode: Check console for navigation events
+🔧 FIXED SPA Features:
+✅ Only ONE section visible at any time (ENFORCED)
+✅ Navigation properly hides all, shows one
+✅ FIXED Portfolio modals now working
+✅ Background images with theme switching  
+✅ Contact form with demo explanation
+✅ Mobile-responsive navigation
+
+🐛 Debug Features:
+- window.debugSPA - Debug object with navigation controls
+- Alt + 1-6 for quick page navigation
+- Console logging for all SPA state changes
+
+📧 Contact Form Notice:
+This is a demonstration portfolio. In a real deployment, messages would need:
+- Backend server (Node.js, PHP, Python, etc.)
+- Email service (SendGrid, Mailgun, AWS SES, etc.)  
+- Form handling service (Netlify Forms, Formspree, etc.)
 `);
 
-// Export for testing/debugging
-window.portfolioApp = {
+// Debug object for troubleshooting
+window.debugSPA = {
   data: portfolioData,
   elements: elements,
   showPage: showPage,
   toggleTheme: toggleTheme,
   openProjectModal: openProjectModal,
-  closeProjectModal: closeProjectModal
+  closeProjectModal: closeProjectModal,
+  enforceInitialSPAState: enforceInitialSPAState,
+  getCurrentPage: () => currentPage,
+  getAllPages: () => {
+    return Array.from(document.querySelectorAll('.page-section')).map(section => ({
+      id: section.id,
+      isActive: section.classList.contains('active'),
+      display: section.style.display,
+      visible: section.offsetHeight > 0 && section.offsetWidth > 0
+    }));
+  },
+  forceShowHome: () => {
+    console.log('🔧 Debug: Force showing home page...');
+    showPage('home');
+  },
+  testSPABehavior: () => {
+    console.log('🔧 Debug: Testing TRUE SPA behavior...');
+    const pages = ['about', 'skills', 'portfolio', 'experience', 'contact', 'home'];
+    let index = 0;
+    const interval = setInterval(() => {
+      showPage(pages[index]);
+      console.log(`🔧 Showing: ${pages[index]} | All pages:`, window.debugSPA.getAllPages());
+      index++;
+      if (index >= pages.length) {
+        clearInterval(interval);
+        console.log('🔧 SPA test complete - should have shown only one section at a time');
+      }
+    }, 1500);
+  },
+  testModals: () => {
+    console.log('🔧 Debug: Testing modal functionality...');
+    [1, 2, 3].forEach((id, index) => {
+      setTimeout(() => {
+        console.log(`🔧 Testing modal ${id}`);
+        openProjectModal(id);
+        setTimeout(() => {
+          closeProjectModal();
+        }, 1000);
+      }, index * 2000);
+    });
+  }
 };
+
+console.log('🔧 Enhanced debug tools available at window.debugSPA');
