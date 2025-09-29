@@ -34,8 +34,8 @@ body.dark-mode .site-header{background:rgba(0,0,0,0.35)}
     display: flex;
     gap: 10px;
     align-items: center;
-    flex: 1 1 auto;
-    overflow-x: auto;
+    flex: 0 0 auto; /* prevent nav from expanding and misaligning header items */
+    overflow: visible; /* allow normal layout on wide screens */
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     padding-left: 8px;
@@ -156,4 +156,20 @@ body.dark-mode .mobile-menu { background: rgba(10,10,10,0.95); color: #fff; box-
 	/* tiny devices: scale logo down but keep visible */
 	.logo{height:48px;max-width:120px}
 	.main-nav{gap:6px;font-size:0.9rem}
+}
+
+/* Fix header alignment and mobile visibility */
+/* Ensure the left block (logo + nav) doesn't stretch and nav doesn't push the toggle away */
+.left {
+	flex: 0 0 auto; /* do not grow */
+}
+
+/* Force mobile layout: hide desktop nav, show hamburger and theme toggle */
+@media (max-width: 700px) {
+	.main-nav { display: none !important; }       /* hide desktop nav on small screens */
+	.mobile-menu-btn { display: inline-block !important; } /* show hamburger */
+	.theme-toggle { display: inline-block !important; flex-shrink: 0; } /* ensure toggle stays visible */
+	/* keep header sizing consistent */
+	.site-header { height: 80px; padding: 10px 12px; }
+	.content { padding-top: 80px; min-height: calc(100vh - 80px); }
 }
