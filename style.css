@@ -1,37 +1,4 @@
 :root {
-  --bg-image: url('./images/bg-img4-light.jpg'); /* light by default */
-}
-
-body.dark {
-  --bg-image: url('./images/bg-img2-dark.jpg');  /* dark theme image */
-}
-/* Background applied to all SPA sections */
-.page-section {
-  position: relative;
-  background-image: var(--bg-image);
-  background-size: cover;        /* scales across sizes */
-  background-position: center;   /* keep subject centered */
-  background-repeat: no-repeat;
-  background-attachment: fixed;  /* subtle parallax on desktop */
-}
-
-/* Mobile performance: avoid fixed attachment */
-@media (max-width: 768px) {
-  .page-section {
-    background-attachment: scroll;
-  }
-}
-/* Light overlay for readability; sits behind content */
-.page-section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(255, 255, 255, 0.04);
-  pointer-events: none;
-}
-body.dark .page-section::before {
-  background: rgba(0, 0, 0, 0.25);
-}
-:root {
   /* Primitive Color Tokens */
   --color-white: rgba(255, 255, 255, 1);
   --color-black: rgba(0, 0, 0, 1);
@@ -1943,4 +1910,63 @@ body {
   transform: translateX(100%);
   transition: transform 0.3s ease;
   max-width: 400px;
+}
+
+/* ======================================
+   THEME-BASED, RESPONSIVE BACKGROUNDS
+   ====================================== */
+/* Apply background to every SPA section so all pages have an image */
+.page-section{
+  background-image: var(--bg-image-light);   /* light by default */
+  background-size: cover;                    /* scales to any viewport */
+  background-position: center;               /* keeps subject centered */
+  background-repeat: no-repeat;
+  background-attachment: fixed;              /* subtle desktop parallax */
+}
+
+/* Switch image by theme */
+body.dark .page-section{
+  background-image: var(--bg-image-dark);
+}
+
+/* Mobile performance: avoid fixed attachment */
+@media (max-width: 768px){
+  .page-section{ background-attachment: scroll; }
+}
+
+/* Optional, subtle readability overlay */
+.page-section::before{
+  content:'';
+  position:absolute; inset:0;
+  background: rgba(255,255,255,0.04);
+  pointer-events:none;
+}
+body.dark .page-section::before{
+  background: rgba(0,0,0,0.18);
+}
+
+/* ======================================
+   HOME HERO CLEANUP (REMOVE OLD LAYER)
+   ====================================== */
+/* Hide legacy hero background layer that pointed to a missing dark image */
+#home .hero-background{ display:none !important; }
+
+/* Remove the animated down arrow */
+.scroll-indicator, .scroll-arrow{ display:none !important; }
+/* Neutralize the keyframes if present */
+@keyframes bounce { from{transform:none} to{transform:none} }
+
+/* =========================
+   HEADER (kept from your file)
+   ========================= */
+.header{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  height:70px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+body.dark .header{
+  background: rgba(38,40,40,0.95);
 }
