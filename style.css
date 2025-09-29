@@ -25,6 +25,14 @@ body.dark-mode .site-header { background: rgba(0,0,0,0.35); }
 /* Logo */
 .logo { width: clamp(36px, 8vw, 96px); height: auto; }
 
+/* Header groups */
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 16px; }
+.left-group { display: flex; align-items: center; gap: 12px; }
+.right-group { display: flex; align-items: center; gap: 8px; }
+
+/* ensure nav sits directly right of logo */
+.left-group .main-nav { display: flex; gap: 12px; align-items: center; }
+
 /* Nav */
 .main-nav { display: flex; gap: 12px; align-items: center; }
 .main-nav .nav-link {
@@ -87,4 +95,49 @@ body.dark-mode { color: #eee; background-color: #000; }
 @media (max-width: 420px) {
 	.main-nav { gap: 6px; font-size: 0.9rem; }
 	.logo { width: clamp(28px, 12vw, 48px); }
+}
+
+/* Mobile menu button hidden on desktop */
+.mobile-menu-btn { display: none; background: transparent; border: none; font-size: 1.6rem; cursor: pointer; color: inherit; }
+
+/* Hide desktop theme toggle on small screens — will be available in drawer */
+@media (max-width: 700px) {
+	#toggle-mode { display: none; }         /* desktop toggle hidden */
+	.left-group .main-nav { display: none; }/* hide desktop nav on mobile */
+	.mobile-menu-btn { display: inline-block; } /* show menu button */
+	.site-header { padding: 8px 12px; height: 56px; }
+	.content { padding-top: 56px; min-height: calc(100vh - 56px); }
+}
+
+/* Mobile menu drawer (right side) */
+.mobile-menu {
+	position: fixed;
+	top: 64px; /* below header */
+	right: 0;
+	width: 260px;
+	max-width: 85%;
+	height: calc(100vh - 64px);
+	background: rgba(255,255,255,0.98);
+	transform: translateX(100%);
+	transition: transform 260ms ease;
+	box-shadow: -6px 0 18px rgba(0,0,0,0.15);
+	padding: 16px;
+	z-index: 60;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+body.dark-mode .mobile-menu { background: rgba(10,10,10,0.95); color: #fff; box-shadow: -6px 0 18px rgba(0,0,0,0.6); }
+.mobile-menu.open { transform: translateX(0); }
+
+/* mobile nav inside drawer */
+.mobile-menu .mobile-nav { display:flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.mobile-menu .mobile-nav .nav-link { padding: 10px 12px; border-radius: 8px; text-decoration: none; color: inherit; }
+
+/* mobile menu footer */
+.mobile-menu-footer { margin-top: 12px; display:flex; justify-content:center; }
+
+/* ensure desktop behaviors remain */
+@media (min-width: 701px) {
+	.mobile-menu { display: none; }
 }
