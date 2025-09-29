@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taylor Brooks - Full Stack Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-brand">
+            <a href="#" data-section="home">TB</a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#" data-section="home" class="nav-link active">Home</a></li>
+            <li><a href="#" data-section="about" class="nav-link">About</a></li>
+            <li><a href="#" data-section="skills" class="nav-link">Skills</a></li>
+            <li><a href="#" data-section="portfolio" class="nav-link">Portfolio</a></li>
+            <li><a href="#" data-section="experience" class="nav-link">Experience</a></li>
+            <li><a href="#" data-section="contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="page-section active">
+        <div class="hero-content">
+            <h1 class="hero-title">Taylor Brooks</h1>
+            <h2 class="hero-subtitle">Full Stack Developer</h2>
+            <p class="hero-tagline">Transforming ideas into powerful digital solutions</p>
+            <div class="hero-buttons">
+                <a href="#" data-section="portfolio" class="btn btn--primary">View Portfolio</a>
+                <a href="#" data-section="contact" class="btn btn--outline">Get In Touch</a>
+            </div>
+            <div class="hero-social">
+                <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:taylor@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Get to know more about my journey and passion for development</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a passionate full-stack developer with 4+ years of experience building modern web applications. I specialize in React, Node.js, and cloud technologies, with a focus on creating intuitive user experiences and scalable architectures.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>4+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3>30+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3>150K+</h3>
+                            <p>Users Served</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-details">
+                    <h3>Quick Details</h3>
+                    <ul>
+                        <li><strong>Location:</strong> San Diego, CA</li>
+                        <li><strong>Email:</strong> taylor@example.com</li>
+                        <li><strong>Phone:</strong> +1 (555) 321-9876</li>
+                        <li><strong>Specialization:</strong> Full Stack Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills & Technologies</h2>
+                <p>Technologies I work with to bring ideas to life</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>JavaScript</span>
+                                <span>93%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="93"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>React</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Vue.js</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>TypeScript</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Database</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Node.js</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Python</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>MongoDB</span>
+                                <span>84%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="84"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>PostgreSQL</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>DevOps & Tools</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>AWS</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Docker</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Git</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Portfolio</h2>
+                <p>A showcase of my recent projects and achievements</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-project-id="1">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&auto=format" alt="Music Streaming Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="btn btn--primary view-project">View Details</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Music Streaming Platform</h3>
+                        <p>Full-featured music streaming application with playlist management and social features</p>
+                        <div class="portfolio-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-project-id="2">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=600&h=400&fit=crop&auto=format" alt="Cryptocurrency Dashboard" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="btn btn--primary view-project">View Details</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Cryptocurrency Dashboard</h3>
+                        <p>Real-time cryptocurrency tracking and portfolio management application</p>
+                        <div class="portfolio-tech">
+                            <span>Vue.js</span>
+                            <span>Python</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-project-id="3">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop&auto=format" alt="Video Conferencing Platform" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <button class="btn btn--primary view-project">View Details</button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Video Conferencing Platform</h3>
+                        <p>Secure video conferencing application with screen sharing and recording</p>
+                        <div class="portfolio-tech">
+                            <span>Next.js</span>
+                            <span>WebRTC</span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Experience</h2>
+                <p>My professional journey and career highlights</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Senior Full Stack Developer</h3>
+                        <h4>NextGen Software</h4>
+                        <p>Lead development of cutting-edge web applications and guide technical architecture decisions. Collaborate with cross-functional teams to deliver high-quality software solutions.</p>
+                        <ul>
+                            <li>Architected scalable applications serving 150K+ active users</li>
+                            <li>Reduced server costs by 40% through performance optimization</li>
+                            <li>Led development team of 5 engineers on flagship product</li>
+                            <li>Implemented automated testing reducing bugs by 75%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2023</div>
+                    <div class="timeline-content">
+                        <h3>Full Stack Developer</h3>
+                        <h4>CodeCraft Solutions</h4>
+                        <p>Developed responsive web applications using modern JavaScript frameworks. Worked closely with designers and product managers to translate requirements into technical solutions.</p>
+                        <ul>
+                            <li>Built 18+ web applications with 99.9% uptime</li>
+                            <li>Improved user engagement by 55% through UX optimization</li>
+                            <li>Integrated 25+ third-party APIs and payment systems</li>
+                            <li>Mentored 2 junior developers in modern development practices</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 - 2021</div>
+                    <div class="timeline-content">
+                        <h3>Frontend Developer</h3>
+                        <h4>Digital Innovations Inc</h4>
+                        <p>Focused on creating intuitive user interfaces and implementing responsive design principles. Collaborated with backend developers to integrate APIs and ensure seamless user experiences.</p>
+                        <ul>
+                            <li>Created 10+ responsive web interfaces with modern design</li>
+                            <li>Improved page load speeds by 65% through optimization</li>
+                            <li>Established component library used across 12+ projects</li>
+                            <li>Achieved 100% accessibility compliance on all projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Let's discuss your next project or collaboration</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>taylor@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 321-9876</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>San Diego, CA</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="" loading="lazy">
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-description"></p>
+                    <div class="modal-tech" id="modal-technologies"></div>
+                    <div class="modal-links">
+                        <a href="#" target="_blank" class="btn btn--primary" id="modal-github">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" target="_blank" class="btn btn--outline" id="modal-live">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
