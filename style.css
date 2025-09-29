@@ -1,320 +1,90 @@
-/* General Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-    transition: background-color 0.5s ease, color 0.5s ease;
+/* Basic reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: Lato, system-ui, sans-serif; }
+
+/* Header */
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 16px;
+	gap: 12px;
+	background: rgba(255,255,255,0.35);
+	backdrop-filter: blur(6px);
+	z-index: 40;
 }
 
-.flex {
-    display: flex;
+/* Dark header tint */
+body.dark-mode .site-header { background: rgba(0,0,0,0.35); }
+
+/* Logo */
+.logo { width: clamp(36px, 8vw, 96px); height: auto; }
+
+/* Nav */
+.main-nav { display: flex; gap: 12px; align-items: center; }
+.main-nav .nav-link {
+	color: inherit;
+	text-decoration: none;
+	padding: 8px 10px;
+	border-radius: 8px;
+	transition: background-color .18s;
+}
+.main-nav .nav-link.active { background: rgba(83,157,152,0.12); color: #2b7; font-weight:700; }
+
+/* Theme toggle */
+.theme-toggle {
+	padding: 8px 14px;
+	border-radius: 14px;
+	border: none;
+	background: #539d98;
+	color: #fff;
+	cursor: pointer;
 }
 
-.align-center {
-    align-items: center;
+/* Content area (single-section feel) */
+.content {
+	min-height: calc(100vh - 64px);
+	padding-top: 64px; /* header offset */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.justify-space {
-    justify-content: space-between;
+/* Background images for themes */
+.content {
+	background-image: url('./img/bg-img4-light.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+body.dark-mode .content {
+	background-image: url('./img/bg-img2-dark.jpg');
 }
 
-.text-size {
-    font-size: 1.5em;
-}
+/* Panes */
+.panes { width: 100%; max-width: 1000px; padding: 28px; background: rgba(255,255,255,0.0); }
+.pane { display: none; opacity: 0; transform: translateY(8px); transition: opacity .24s, transform .24s; text-align: center; }
+.pane.active { display: block; opacity: 1; transform: translateY(0); }
 
-.img-resize {
-    /* responsive sizing: min 40px, up to 120px, scales with viewport in between */
-    width: clamp(40px, 12vw, 120px);
-    height: auto;
-    display: block;
-    object-fit: contain;
-    flex-shrink: 0;
-}
+/* Text colors */
+body.light-mode { color: #111; background-color: #fff; }
+body.dark-mode { color: #eee; background-color: #000; }
 
-/* Header (fixed) */
-header#header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 10px 20px;
-    z-index: 30;
-    background: rgba(255,255,255,0);
-    backdrop-filter: blur(6px);
-}
-
-body.dark-mode header#header {
-    background: rgba(0,0,0,0);
-}
-
-/* Hero Section */
-.hero-section, .about-section {
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.hero-section {
-    background-image: url('./img/bg-img4-light.jpg');
-}
-
-.about-section {
-    background-image: url('./img/bg-img4-light.jpg');
-}
-
-/* Nav link styling & active state */
-header a.nav-link {
-    margin: 0 12px;
-    color: inherit;
-    padding: 6px 10px;
-    border-radius: 8px;
-    transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-header a.nav-link.active {
-    background-color: rgba(83,157,152,0.15);
-    color: #539d98;
-    font-weight: 700;
-}
-
-/* Ensure main content below header */
-main {
-    margin-top: 72px; /* match header height */
-}
-
-/* Scroll snapping container and sections */
-.snap-container {
-    height: calc(100vh - 72px);
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-}
-
-.snap-container section {
-    height: calc(100vh - 72px);
-    scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    box-sizing: border-box;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    opacity: 0.98;
-}
-
-/* Slight visual distinction between sections */
-.about-section {
-    background-color: rgba(255,255,255,0.85);
-}
-body.dark-mode .about-section {
-    background-color: rgba(0,0,0,0.65);
-}
-
-/* Section content animation when active (JS adds .in-view by observer) */
-.snap-container section.in-view {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* Make hero text readable */
-.home-text2 h1, .home-text2 p {
-    margin: 0;
-    padding: 6px 12px;
-}
-
-/* Light Mode */
-body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-body.light-mode .hero-section, body.light-mode .about-section {
-    background-image: url('./img/bg-img4-light.jpg');
-}
-
-body.light-mode .home-text2 h1, body.light-mode .home-text2 p {
-    color: black;
-}
-
-/* Dark Mode */
-body.dark-mode {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-body.dark-mode .hero-section, body.dark-mode .about-section {
-    background-image: url('./img/bg-img2-dark.jpg');
-}
-
-body.dark-mode .home-text2 h1, body.dark-mode .home-text2 p {
-    color: white;
-}
-
-/* Button Styling */
-button {
-    cursor: pointer;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: #539d98;
-    color: white;
-    font-size: 1rem;
-}
-
-/* Default Link Styling */
-header a {
-    text-decoration: none;
-    transition: color 0.5s ease;
-}
-
-/* Light Mode Link Styling */
-body.light-mode header a {
-    color: black; /* Black text for light mode */
-}
-
-/* Dark Mode Link Styling */
-body.dark-mode header a {
-    color: white; /* White text for dark mode */
-}
-
-/* Desktop nav layout: visible by default */
-.nav-links {
-    display: flex; /* was incorrectly set to none */
-    gap: 8px;
-}
-
-/* Mobile menu button hidden by default (desktop) */
-.mobile-menu-btn {
-    display: none; /* show only on small screens */
-    background: transparent;
-    border: none;
-    font-size: 1.6rem;
-    padding: 8px 10px;
-    cursor: pointer;
-    color: inherit;
-}
-
-/* Mobile menu drawer (hidden by default, slides from right) */
-.mobile-menu {
-    position: fixed;
-    top: 72px; /* keep in sync with header margin-top */
-    right: 0;
-    width: 240px;
-    max-width: 80%;
-    height: calc(100vh - 72px);
-    background: rgba(255,255,255,0.98);
-    color: inherit;
-    box-shadow: -6px 0 20px rgba(0,0,0,0.15);
-    transform: translateX(100%);
-    transition: transform 0.28s ease;
-    z-index: 9999; /* ensure it's above header and other content */
-    padding: 16px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
-body.dark-mode .mobile-menu {
-    background: rgba(10,10,10,0.95);
-    color: #fff;
-    box-shadow: -6px 0 20px rgba(0,0,0,0.6);
-}
-
-/* When open */
-.mobile-menu.open {
-    transform: translateX(0);
-}
-
-/* Mobile nav links inside drawer */
-.mobile-menu .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.mobile-menu .mobile-nav .nav-link {
-    padding: 10px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Single-section panes: hide non-active panes and center content */
-.content-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
-    box-sizing: border-box;
-    /* keep section full-viewport feel */
-    min-height: calc(100vh - 72px);
-    background-image: url('./img/bg-img4-light.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* allow text contrast */
-    color: inherit;
-    display: flex; /* keep centering behavior */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Dark mode background for the single-section */
-body.dark-mode .content-section {
-    background-image: url('./img/bg-img2-dark.jpg');
-}
-
-/* Ensure panes sit on top of the background */
-.content-section .panes {
-    background: rgba(255,255,255,0.0); /* transparent by default */
-}
-
-/* Optionally provide a subtle overlay for readability on small screens */
+/* Responsive: collapse nav into small spacing on narrow screens */
 @media (max-width: 700px) {
-    .content-section::before {
-        content: "";
-        position: absolute;
-        inset: 72px 0 0 0; /* account for header */
-        background: rgba(0,0,0,0.12);
-        pointer-events: none;
-    }
-    body.dark-mode .content-section::before {
-        background: rgba(0,0,0,0.28);
-    }
+	.site-header { padding: 8px 12px; height: 56px; }
+	.main-nav { gap: 8px; font-size: 0.95rem; }
+	.theme-toggle { padding: 6px 10px; font-size: 0.95rem; }
+	.content { padding-top: 56px; min-height: calc(100vh - 56px); }
 }
 
-/* Responsive adjustments */
-@media (max-width: 700px) {
-    /* hide desktop nav on small screens and show mobile button */
-    .nav-links { display: none; }
-    .mobile-menu-btn { display: inline-block; margin-right: 8px; }
-
-    header#header { padding: 8px 12px; }
-    .img-resize { /* smaller caps for mobile */ max-width: 60px; width: clamp(36px, 14vw, 60px); max-height: 60px; }
-    header a.nav-link { margin: 0 8px; font-size: 0.95rem; }
-    main { margin-top: 64px; }
-    .snap-container { height: calc(100vh - 64px); }
-    .snap-container section { height: calc(100vh - 64px); }
-
-    /* Make theme toggle smaller on mobile */
-    #toggle-mode {
-        padding: 6px 12px;
-        font-size: 0.95rem;
-        border-radius: 14px;
-    }
-
-    .mobile-menu { top: 64px; height: calc(100vh - 64px); }
-}
-
-/* Very small devices */
+/* Keep layout simple on very small */
 @media (max-width: 420px) {
-    .img-resize { width: clamp(32px, 14vw, 48px); max-width: 48px; max-height: 48px; }
-    .mobile-menu { width: 200px; }
-    .mobile-menu-btn { font-size: 1.2rem; }
-    #toggle-mode { padding: 6px 10px; font-size: 0.9rem; }
+	.main-nav { gap: 6px; font-size: 0.9rem; }
+	.logo { width: clamp(28px, 12vw, 48px); }
 }
