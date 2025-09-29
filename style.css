@@ -242,6 +242,44 @@ body.dark-mode .mobile-menu {
     color: inherit;
 }
 
+/* Single-section panes: hide non-active panes and center content */
+.content-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* container for panes */
+.panes {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* individual pane: hidden by default, shown when .active */
+.pane {
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 260ms ease, transform 260ms ease;
+    padding: 12px;
+}
+
+/* visible pane */
+.pane.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ensure links inside panes inherit color in both themes */
+.content-section a {
+    color: inherit;
+    text-decoration: underline;
+}
+
 /* Responsive adjustments */
 @media (max-width: 700px) {
     /* hide desktop nav on small screens and show mobile button */

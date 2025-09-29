@@ -17,7 +17,8 @@
             <img src="./logo.svg" alt="Logo" class="img-resize">
             <!-- Desktop nav (visible on larger screens) -->
             <nav id="main-nav" class="nav-links">
-                <a href="#hero-section" class="text-black text-size mx-18 my-8 nav-link">Home</a>
+                <!-- note: hrefs point to pane ids (no separate sections) -->
+                <a href="#home" class="text-black text-size mx-18 my-8 nav-link">Home</a>
                 <a href="#about" class="text-black text-size mx-18 my-8 nav-link">About</a>
                 <a href="#skills" class="text-black text-size mx-18 my-8 nav-link">Skills</a>
                 <a href="#portfolio" class="text-black text-size mx-18 my-8 nav-link">Portfolio</a>
@@ -25,7 +26,6 @@
             </nav>
         </div>
         <div class="align-center justify-center flex">
-            <!-- menu button always visible (drawer is the only nav) -->
             <button id="mobile-menu-btn" class="mobile-menu-btn" aria-expanded="false" aria-label="Open menu">☰</button>
             <button id="toggle-mode" class="text-size text-white btn-color btn-border btn-edge">DARKMODE</button>
         </div>
@@ -34,7 +34,7 @@
     <!-- Mobile menu drawer (right side) -->
     <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
         <nav class="mobile-nav">
-            <a href="#hero-section" class="nav-link">Home</a>
+            <a href="#home" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#portfolio" class="nav-link">Portfolio</a>
@@ -43,44 +43,36 @@
     </div>
 
     <main class="snap-container" id="main">
-        <section class="hero-section" id="hero-section">
-            <div class="home-text2">
-                <h1>Hello World! This is Satyendra Kumar Lokesh Portfolio and he <span>Welcomes You...</span></h1>
-                <p>He is a geek, that's what he thinks. Feel Free to <a href="#contact">Contact</a></p>
-            </div>
-        </section>
+        <!-- single container section that contains all panes -->
+        <section id="single-section" class="content-section">
+            <div class="panes">
+                <article id="home" class="pane active">
+                    <h1>Hello World! This is Satyendra Kumar Lokesh Portfolio and he <span>Welcomes You...</span></h1>
+                    <p>He is a geek, that's what he thinks. Feel Free to <a href="#contact">Contact</a></p>
+                </article>
 
-        <section id="about" class="about-section">
-            <div class="about-content">
-                <h2>About Me</h2>
-                <p>Hello! I am Satyendra Kumar Lokesh, a passionate developer who loves creating amazing web experiences.
-                </p>
-                <p>I specialize in front-end development, responsive design, and building dynamic web applications.</p>
-            </div>
-        </section>
+                <article id="about" class="pane">
+                    <h2>About Me</h2>
+                    <p>Hello! I am Satyendra Kumar Lokesh, a passionate developer who loves creating amazing web experiences.
+                    </p>
+                    <p>I specialize in front-end development, responsive design, and building dynamic web applications.</p>
+                </article>
 
-        <!-- New: Skills -->
-        <section id="skills" class="about-section">
-            <div class="about-content">
-                <h2>Skills</h2>
-                <p>HTML, CSS, JavaScript, React, Node.js, Responsive Design, Git</p>
-            </div>
-        </section>
+                <article id="skills" class="pane">
+                    <h2>Skills</h2>
+                    <p>HTML, CSS, JavaScript, React, Node.js, Responsive Design, Git</p>
+                </article>
 
-        <!-- New: Portfolio -->
-        <section id="portfolio" class="about-section">
-            <div class="about-content">
-                <h2>Portfolio</h2>
-                <p>Some projects showcase: project A, project B, project C. (Replace with your items)</p>
-            </div>
-        </section>
+                <article id="portfolio" class="pane">
+                    <h2>Portfolio</h2>
+                    <p>Some projects showcase: project A, project B, project C. (Replace with your items)</p>
+                </article>
 
-        <!-- New: Contact -->
-        <section id="contact" class="about-section">
-            <div class="about-content">
-                <h2>Contact</h2>
-                <p>Email: your.email@example.com</p>
-                <p>LinkedIn / GitHub / Twitter — links here</p>
+                <article id="contact" class="pane">
+                    <h2>Contact</h2>
+                    <p>Email: your.email@example.com</p>
+                    <p>LinkedIn / GitHub / Twitter — links here</p>
+                </article>
             </div>
         </section>
     </main>

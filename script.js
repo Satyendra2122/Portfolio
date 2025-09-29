@@ -164,3 +164,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Show/hide panes inside the single section and bind nav links
+document.addEventListener('DOMContentLoaded', () => {
+    const panes = Array.from(document.querySelectorAll('.pane'));
+    const navLinks = Array.from(document.querySelectorAll('a.nav-link'));
+    const singleSection = document.getElementById('single-section');
+    const container = document.querySelector('.snap-container');
+
+    if (!panes.length || !navLinks.length || !singleSection) return;
+
+    function showPane(id, updateHash = true) {
+        panes.forEach(p => p.classList.toggle('active', p.id === id));
+        navLinks.forEach(a => {
+            const target = (a.getAttribute('href') || '').replace('#', '');
+            a.classList.toggle('active', target === id);
+        });
+        if (updateHash) {
+            history.replaceState(null, '', '#' + id);
+        }
+        // scroll to the single section so pane is visible (if using scroll container)
+        if (container) {
+            const offset = singleSection.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
+            container.scrollTo({ top: offset, behavior: 'smooth' });
+        } else {
+            singleSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // bind nav links (desktop + drawer)
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = (link.getAttribute('href') || '').replace('#', '') || 'home';
+            showPane(id);
+        });
+    });
+
+    // initial show based on hash or default to 'home'
+    const initial = (location.hash || '#home').replace('#', '') || 'home';
+    // small timeout so any initial layout settles (optional)
+    setTimeout(() => showPane(initial, false), 30);
+});
